@@ -9,39 +9,31 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *current = *head, *reversed = NULL, *temp;
-	int isPalindrome = 1;
+	listint_t *slow = *head, *fast = *head, *prev = NULL;
+	listint_t *firstHalf = *head, *secondHalf;
 
-	while (current != NULL)
+	while (fast != NULL && fast->next != NULL)
 	{
-		temp = malloc(sizeof(listint_t));
-		if (temp == NULL)
+		fast = fast->next->next;
+
+		listint_t *nextNode = slow->next;
+		slow->next = prev;
+		prev = slow;
+		slow = nextNode;
+	}
+
+	if (fast != NULL)
+		slow = slow->next;
+
+	secondHalf = slow;
+
+	while (prev != NULL && secondHalf != NULL)
+	{
+		if (prev->n != secondHalf->n)
 			return (0);
-		temp->n = current->n;
-		temp->next = reversed;
-		reversed = temp;
-		current = current->next;
+		prev = prev->next;
+		secondHalf = secondHalf->next;
 	}
 
-	current = *head;
-	while (current != NULL && reversed != NULL)
-	{
-		if (current->n != reversed->n)
-		{
-			isPalindrome = 0;
-			break;
-		}
-		current = current->next;
-		reversed = reversed->next;
-	}
-
-	while (reversed != NULL)
-	{
-		temp = reversed;
-		reversed = reversed->next;
-		free(temp);
-	}
-
-	return (isPalindrome);
+	return (1);
 }
-
