@@ -9,7 +9,7 @@ if __name__ == "__main__":
     elif length == 2:
         print("{:d} argument:".format(length - 1))
         for i in range(1, length):
-                        print("{}: {}".format(i, sys.argv[i]))
+            print("{}: {}".format(i, sys.argv[i]))
     elif length > 1:
         print("{:d} arguments:".format(length - 1))
         for i in range(1, length):
