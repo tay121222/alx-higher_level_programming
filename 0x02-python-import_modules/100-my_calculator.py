@@ -13,7 +13,6 @@ if __name__ == "__main__":
     b = int(sys.argv[3])
     operator = sys.argv[2]
 
-
     if operator == "+":
         print("{} + {} = {}".format(a, b, add(a, b)))
     elif operator == "-":
