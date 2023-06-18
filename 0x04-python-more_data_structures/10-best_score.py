@@ -4,7 +4,9 @@ def best_score(a_dictionary):
         return None
 
     big_val = 0
+    keyy = ""
     for key in a_dictionary:
         if int(a_dictionary[key]) > big_val:
             big_val = int(a_dictionary[key])
-    return big_val
+            keyy = key
+    return keyy
