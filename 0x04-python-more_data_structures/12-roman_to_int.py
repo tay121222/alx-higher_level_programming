@@ -14,7 +14,8 @@ def roman_to_int(roman_string):
         char = roman_string[i]
 
         if char in roman_dict:
-            if i + 1 < len(roman_string) and roman_dict[char] < roman_dict[roman_string[i + 1]]:
+            if i + 1 < len(roman_string) and \
+                    roman_dict[char] < roman_dict[roman_string[i + 1]]:
                 sum += roman_dict[roman_string[i + 1]] - roman_dict[char]
                 i += 2
             else:
