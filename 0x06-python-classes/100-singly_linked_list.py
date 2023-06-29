@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+A singly linked list.
+"""
+
 
 class Node:
     """
