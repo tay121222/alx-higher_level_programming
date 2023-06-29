@@ -13,6 +13,8 @@ class Node:
         """
         Initializes a Node object.
         """
+        self.__data = None
+        self.__next_node = None
         self.__data = data
         self.__next_node = next_node
 
@@ -44,7 +46,7 @@ class Node:
         """
         Sets the next node in the linked list.
         """
-        if value is not None and type(value) != Node:
+        if value is not None and not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
         else:
             self.__next_node = value
