@@ -49,7 +49,7 @@ class Square:
         Sets the position of the square
         """
         if type(value) != tuple or len(value) != 2:
-            raise TyperError("position must be a tuple of 2 positive integers")
+            raise TypeError("position must be a tuple of 2 positive integers")
         for num in value:
             if type(num) != int or num < 0:
                 raise ValueError("position must contain 2 positive integers")
