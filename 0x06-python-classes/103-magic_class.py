@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+""" Python class that does same as Python bytecode """
+
+
 class MagicClass:
     """ Represent a Circle """
 
