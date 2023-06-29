@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ Python class that does same as Python bytecode """
 
+import math
+
 
 class MagicClass:
     """ Represent a Circle """
