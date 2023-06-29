@@ -22,7 +22,10 @@ class Square:
         except IndexError:
             raise TypeError("position must be a tuple of 2 positive integers")
 
-        if not all(isinstance(pos, int) and pos >= 0 for pos in self.__position):
+        if not all(
+                isinstance(pos, int) and pos >= 0
+                for pos in self.__position
+                ):
             raise TypeError("position must be a tuple of 2 positive integers")
 
         if type(self.__size) != int:
