@@ -13,8 +13,6 @@ class Node:
         """
         Initializes a Node object.
         """
-        self.__data = None
-        self.__next_node = None
         self.__data = data
         self.__next_node = next_node
 
