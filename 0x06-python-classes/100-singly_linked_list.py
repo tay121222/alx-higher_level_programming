@@ -65,23 +65,26 @@ class SinglyLinkedList:
         """
         Inserts a new Node into the a sorted position in the list.
         """
-        if self.__head is None:
-            self.__head = Node(value)
-        else:
-            temp = self.__head
-            new_node = Node(value)
-
-            if temp.data > new_node.data:
-                new_node.next_node = temp
-                self.__head = new_node
+        try:
+            if self.__head is None:
+                self.__head = Node(value)
             else:
-                while temp.next_node is not None:
-                    if new_node.data < temp.next_node.data:
-                        new_node.next_node = temp.next_node
-                        temp.next_node = new_node
-                        return
-                    temp = temp.next_node
-                temp.next_node = new_node
+                temp = self.__head
+                new_node = Node(value)
+
+                if temp.data > new_node.data:
+                    new_node.next_node = temp
+                    self.__head = new_node
+                else:
+                    while temp.next_node is not None:
+                        if new_node.data < temp.next_node.data:
+                            new_node.next_node = temp.next_node
+                            temp.next_node = new_node
+                            return
+                        temp = temp.next_node
+                    temp.next_node = new_node
+        except Exception as e:
+            print(e)
 
     def __str__(self):
         """
