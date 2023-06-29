@@ -77,12 +77,12 @@ class Square:
         """
         Returns a string rep of a square
         """
-        string_repr = ""
+        s_rep = ""
         if self.__size == 0:
-            return string_repr
+            return s_rep
         else:
             for _ in range(self.__position[1]):
-                string_repr += "\n"
+                s_rep += "\n"
             for _ in range(self.__size):
-                string_repr += " " * self.__position[0] + "#" * self.__size + "\n"
-            return string_repr.rstrip("\n")
+                s_rep += " " * self.__position[0] + "#" * self.__size + "\n"
+            return s_rep.rstrip("\n")
