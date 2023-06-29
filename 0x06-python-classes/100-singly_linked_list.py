@@ -13,6 +13,9 @@ class Node:
         """
         Initializes a Node object.
         """
+        if type(data) != int:
+            raise TypeError("data must be an integer")
+
         self.__data = data
         self.__next_node = next_node
 
