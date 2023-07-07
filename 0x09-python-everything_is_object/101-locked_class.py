@@ -6,4 +6,4 @@ class LockedClass:
     """
     that prevents the user from creating new instance attributes
     """
-    __slots__ = ["First_name"]
+    __slots__ = ["first_name"]
