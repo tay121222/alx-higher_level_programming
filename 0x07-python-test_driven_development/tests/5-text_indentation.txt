@@ -1,0 +1,59 @@
+The ``5-text_indentation`` module
+============================
+
+Using ``text_indentation``
+---------------------
+
+Importing function from the module:
+	>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+test cases:
+	>>> text_indentation("Hello. How are you?")
+    	Hello.
+	<BLANKLINE>
+    	How are you?
+	<BLANKLINE>
+
+    	>>> text_indentation("This is a test: one. two? three: four")
+    	This is a test:
+	<BLANKLINE>
+    	one.
+	<BLANKLINE>
+    	two?
+	<BLANKLINE>
+    	three:
+	<BLANKLINE>
+    	four
+
+    	>>> text_indentation(123)
+    	Traceback (most recent call last):
+        ...
+    	TypeError: text must be a string
+
+	>>> text_indentation("Another test... with more characters: !!")
+	Another test.
+	<BLANKLINE>
+	.
+	<BLANKLINE>
+	.
+	<BLANKLINE>
+	with more characters:
+	<BLANKLINE>
+	!!
+
+	>>> text_indentation("No special characters in this text")
+	No special characters in this text
+
+	>>> text_indentation("Only one character:")
+	Only one character:
+	<BLANKLINE>
+	
+	>>> text_indentation("Ends with a question?")
+	Ends with a question?
+	<BLANKLINE>
+
+	>>> text_indentation("Starts with a period.")
+	Starts with a period.
+	<BLANKLINE>
+
+	>>> text_indentation("")
