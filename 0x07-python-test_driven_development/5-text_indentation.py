@@ -3,6 +3,7 @@
 
 
 def text_indentation(text):
+    """function that prints a text with 2 new lines"""
     if type(text) != str:
         raise TypeError("text must be a string")
 
