@@ -25,6 +25,8 @@ test cases:
 	<BLANKLINE>
     	four
 
+	>>> text_indentation('    ')
+
     	>>> text_indentation(123)
     	Traceback (most recent call last):
         ...
@@ -41,6 +43,20 @@ test cases:
 	<BLANKLINE>
 	!!
 
+	>>> text_indentation('\n.\n?\n:')
+    	<BLANKLINE>
+    	.
+    	<BLANKLINE>
+    	<BLANKLINE>
+    	?
+    	<BLANKLINE>
+    	<BLANKLINE>
+    	:
+    	<BLANKLINE>
+
+	>>> text_indentation("   \n")
+	<BLANKLINE>
+	
 	>>> text_indentation("No special characters in this text")
 	No special characters in this text
 
