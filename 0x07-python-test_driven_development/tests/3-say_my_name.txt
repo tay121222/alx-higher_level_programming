@@ -15,8 +15,8 @@ Test Cases:
 	>>> say_my_name("Walter", "White")
 	My name is Walter White
 
-	>>> say_my_name("Bob")
-        My name is Bob
+	>>> say_my_name("Taylor")
+	My name is Taylor
 
 	>>> say_my_name("Enoch", "")
 	My name is Enoch
