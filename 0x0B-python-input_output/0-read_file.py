@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/python3
 """contains function that reads a text file (UTF8) and prints it to stdout"""
 
 
