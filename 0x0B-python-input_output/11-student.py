@@ -28,4 +28,4 @@ class Student:
     def reload_from_json(self, json):
         """replaces attributes of the Student instance"""
         for attri in json:
-            self__dict__[attri] = json[attri]
+            self.__dict__[attri] = json[attri]
