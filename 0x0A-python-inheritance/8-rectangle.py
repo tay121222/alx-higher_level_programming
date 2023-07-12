@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Contains Rectangle that inherits from BaseGeometry"""
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
-i
+
 
 class Rectangle(BaseGeometry):
     """Rectangle that inherits from BaseGeometry"""
