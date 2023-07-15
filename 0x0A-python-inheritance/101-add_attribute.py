@@ -4,6 +4,7 @@ to an object if it’s possible"""
 
 
 def add_attribute(obj, attr, value):
+    """function that adds a new attribute to an object"""
     if not hasattr(obj, '__dict__') and not hasattr(
             obj, '__slots__'
             ):
