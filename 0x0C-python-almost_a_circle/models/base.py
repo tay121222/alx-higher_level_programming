@@ -1,4 +1,4 @@
-#!/us/bin/python3
+#!/usr/bin/python3
 """Contains Base of other classes"""
 
 
