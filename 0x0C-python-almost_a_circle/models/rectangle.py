@@ -6,6 +6,8 @@ from models.base import Base
 class Rectangle(Base):
     """inherits from Base"""
     def __init__(self, width, height, x=0, y=0, id=None):
+        """Initialization of a Rectangle"""
+
         super().__init__(id)
         self.width = width
         self.height = height
@@ -14,10 +16,12 @@ class Rectangle(Base):
 
     @property
     def width(self):
+        """Get width of rectangle"""
         return self.__width
 
     @width.setter
     def width(self, value):
+        """Set and get width of rectangle"""
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -26,6 +30,7 @@ class Rectangle(Base):
 
     @property
     def height(self):
+        """get and height of rectangle"""
         return self.__height
 
     @height.setter
@@ -61,4 +66,5 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
+        """Calculates area of rectangle"""
         return self.__width * self.__height
