@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Contains Base of other classes"""
 import json
+from os import path
 
 
 class Base:
@@ -50,3 +51,14 @@ class Base:
             new_instance = None
         new_instance.update(**dictionary)
         return new_instance
+
+    @classmethod
+    def load_from_file(cls):
+        """returns a list of instances"""
+        filename = "{}.json".format(cls.__name__)
+        if not path.isfile(filename):
+            return {}
+        with open(filename, 'r') as file:
+            json_data = file.read()
+            data_list = cls.from_json_string(json_data)
+            return [cls.create(**data) for data in data_list]
