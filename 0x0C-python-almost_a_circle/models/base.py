@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Contains Base of other classes"""
 import json
+import csv
 from os import path
 
 
@@ -62,3 +63,49 @@ class Base:
             json_data = file.read()
             data_list = cls.from_json_string(json_data)
             return [cls.create(**data) for data in data_list]
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """serializes and deserializes in CSV"""
+        filename = cls.__name__ + ".csv"
+        with open(filename, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+
+            if cls.__name__ == "Rectangle":
+                fieldnames = ['id', 'width', 'height', 'x', 'y']
+            elif cls.__name__ == "Square":
+                fieldnames = ['id', 'size', 'x', 'y']
+
+            writer.writerow(fieldnames)
+
+            for obj in list_objs:
+                writer.writerow(
+                        [getattr(obj, field) for field in fieldnames]
+                        )
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """serializes and deserializes in CSV"""
+        filename = cls.__name__ + ".csv"
+        ret = []
+        try:
+            with open(filename, 'r', newline='') as csvfile:
+                reader = csv.reader(csvfile)
+                next(reader)
+                for row in reader:
+                    row = [int(r) for r in row]
+                    if cls.__name__ == "Rectangle":
+                        d = {
+                                "id": row[0], "width": row[1],
+                                "height": row[2],
+                                "x": row[3], "y": row[4]
+                                }
+                    else:
+                        d = {
+                                "id": row[0], "size": row[1],
+                                "x": row[2], "y": row[3]
+                                }
+                    ret.append(cls.create(**d))
+            return ret
+        except IOError:
+            return []
