@@ -2,6 +2,7 @@
 """Contains Base of other classes"""
 import json
 import csv
+import turtle
 from os import path
 
 
@@ -109,3 +110,51 @@ class Base:
             return ret
         except IOError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Turtle graphic initialization"""
+        screen = turtle.Screen()
+        screen.bgcolor("white")
+        screen.title("Drawing Rectangles and Squares")
+
+        def draw_rectangle(rect):
+            turt = turtle.Turtle()
+            turt.speed(1)
+            turt.pensize(2)
+            turt.penup()
+            turt.goto(rect.x, rect.y)
+            turt.pendown()
+            turt.fillcolor("blue")
+            turt.begin_fill()
+            for _ in range(2):
+                turt.forward(rect.width)
+                turt.left(90)
+                turt.forward(rect.height)
+                turt.left(90)
+            turt.end_fill()
+            turt.hideturtle()
+
+        def draw_square(square):
+            turt = turtle.Turtle()
+            turt.speed(1)
+            turt.pensize(2)
+            turt.penup()
+            turt.goto(square.x + rect.x + 30, square.y)
+            turt.pendown()
+            turt.fillcolor("red")
+            turt.begin_fill()
+            for _ in range(4):
+                turt.forward(square.size)
+                turt.left(90)
+            turt.end_fill()
+            turt.hideturtle()
+
+        for rect in list_rectangles:
+            draw_rectangle(rect)
+
+        y_coord = 0
+        for square in list_squares:
+            draw_square(square)
+
+        turtle.done()
