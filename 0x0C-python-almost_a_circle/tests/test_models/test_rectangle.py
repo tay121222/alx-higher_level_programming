@@ -48,16 +48,32 @@ class TestRectangle(unittest.TestCase):
     def test_rectangle_validation(self):
         with self.assertRaises(TypeError):
             Rectangle("1", 2)
+
+        with self.assertRaises(TypeError):
             Rectangle(1, "2")
+
+        with self.assertRaises(TypeError):
             Rectangle(1, 2, "3")
+
+        with self.assertRaises(TypeError):
             Rectangle(1, 2, 3, "4")
 
         with self.assertRaises(ValueError):
             Rectangle(-1, 2)
+
+        with self.assertRaises(ValueError):
             Rectangle(1, -2)
+
+        with self.assertRaises(ValueError):
             Rectangle(0, 2)
+
+        with self.assertRaises(ValueError):
             Rectangle(1, 0)
+
+        with self.assertRaises(ValueError):
             Rectangle(1, 2, -3)
+
+        with self.assertRaises(ValueError):
             Rectangle(1, 2, 3, -4)
 
     def test_rectangle_area(self):
@@ -104,6 +120,34 @@ class TestRectangle(unittest.TestCase):
     def test_invalid_width(self):
         with self.assertRaises(ValueError):
             r = Rectangle(-1, 2)
+
+    def test_invalid_height(self):
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, -2)
+
+    def test_invalid_x(self):
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 2, -3)
+
+    def test_invalid_y(self):
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 2, 3, -4)
+
+    def test_invalid_width_type(self):
+        with self.assertRaises(TypeError):
+            r = Rectangle("1", 2)
+
+    def test_invalid_height_type(self):
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, "2")
+
+    def test_invalid_x_type(self):
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, 2, "3")
+
+    def test_invalid_y_type(self):
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, 2, 3, "4")
 
 if __name__ == '__main__':
     unittest.main()
