@@ -45,37 +45,6 @@ class TestRectangle(unittest.TestCase):
         self.assertIsInstance(r2, Base)
         self.assertIsInstance(r3, Base)
 
-    def test_rectangle_validation(self):
-        with self.assertRaises(TypeError):
-            Rectangle("1", 2)
-
-        with self.assertRaises(TypeError):
-            Rectangle(1, "2")
-
-        with self.assertRaises(TypeError):
-            Rectangle(1, 2, "3")
-
-        with self.assertRaises(TypeError):
-            Rectangle(1, 2, 3, "4")
-
-        with self.assertRaises(ValueError):
-            Rectangle(-1, 2)
-
-        with self.assertRaises(ValueError):
-            Rectangle(1, -2)
-
-        with self.assertRaises(ValueError):
-            Rectangle(0, 2)
-
-        with self.assertRaises(ValueError):
-            Rectangle(1, 0)
-
-        with self.assertRaises(ValueError):
-            Rectangle(1, 2, -3)
-
-        with self.assertRaises(ValueError):
-            Rectangle(1, 2, 3, -4)
-
     def test_rectangle_area(self):
         r1 = Rectangle(2, 4)
         self.assertEqual(r1.area(), 8)
@@ -148,6 +117,11 @@ class TestRectangle(unittest.TestCase):
     def test_invalid_y_type(self):
         with self.assertRaises(TypeError):
             r = Rectangle(1, 2, 3, "4")
+
+    def test_to_dictionary_output(self):
+        r = Rectangle(10, 2, 1, 9, 5)
+        correct = {'x': 1, 'y': 9, 'id': 5, 'height': 2, 'width': 10}
+        self.assertDictEqual(correct, r.to_dictionary())
 
 if __name__ == '__main__':
     unittest.main()
