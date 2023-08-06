@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """Contains Testcases for Rectangle"""
-import unittest
+import unittest.mock
 from models.rectangle import Rectangle
 from models.base import Base
+from contextlib import redirect_stdout
+import json
 import os
+import io
 
 
 class TestRectangle(unittest.TestCase):
@@ -127,6 +130,33 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(10, 10, 10, 10, 10)
         with self.assertRaisesRegex(ValueError, "height must be > 0"):
             r.update(89, 1, 0)
+
+    def test_rectangle_width_zero(self):
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 0)
+
+    def test_rectangle_negative_coordinates(self):
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 2, -3)
+
+    def test_rectangle_save_to_empty_file(self):
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            content = file.read()
+            self.assertEqual(content, "[]")
+
+    def test_save_to_file_non_empty(self):
+        r_list = [Rectangle(1, 2)]
+        Rectangle.save_to_file(r_list)
+        with open("Rectangle.json", "r") as file:
+            data = file.read()
+            self.assertNotEqual(data, "[]")
+
+    def test_validation(self):
+        with self.assertRaises(ValueError):
+            Rectangle(1, 0)
+        with self.assertRaises(ValueError):
+            Rectangle(1, 2, -3)
 
 if __name__ == '__main__':
     unittest.main()
