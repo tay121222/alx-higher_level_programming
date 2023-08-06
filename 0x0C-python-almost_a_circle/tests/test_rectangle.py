@@ -45,21 +45,6 @@ class TestRectangle(unittest.TestCase):
         self.assertIsInstance(r2, Base)
         self.assertIsInstance(r3, Base)
 
-    def test_rectangle_validation(self):
-        with self.assertRaises(TypeError):
-            Rectangle("1", 2)
-            Rectangle(1, "2")
-            Rectangle(1, 2, "3")
-            Rectangle(1, 2, 3, "4")
-
-        with self.assertRaises(ValueError):
-            Rectangle(-1, 2)
-            Rectangle(1, -2)
-            Rectangle(0, 2)
-            Rectangle(1, 0)
-            Rectangle(1, 2, -3)
-            Rectangle(1, 2, 3, -4)
-
     def test_rectangle_area(self):
         r1 = Rectangle(2, 4)
         self.assertEqual(r1.area(), 8)
@@ -100,6 +85,48 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(str(rectangles[0]), str(r1))
         self.assertEqual(str(rectangles[1]), str(r2))
         os.remove("Rectangle.json")
+
+    def test_invalid_width(self):
+        with self.assertRaises(ValueError):
+            r = Rectangle(-1, 2)
+
+    def test_invalid_height(self):
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, -2)
+
+    def test_invalid_x(self):
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 2, -3)
+
+    def test_invalid_y(self):
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 2, 3, -4)
+
+    def test_invalid_width_type(self):
+        with self.assertRaises(TypeError):
+            r = Rectangle("1", 2)
+
+    def test_invalid_height_type(self):
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, "2")
+
+    def test_invalid_x_type(self):
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, 2, "3")
+
+    def test_invalid_y_type(self):
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, 2, 3, "4")
+
+    def test_to_dictionary_output(self):
+        r = Rectangle(10, 2, 1, 9, 5)
+        correct = {'x': 1, 'y': 9, 'id': 5, 'height': 2, 'width': 10}
+        self.assertDictEqual(correct, r.to_dictionary())
+
+    def test_update_args_height_zero(self):
+        r = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            r.update(89, 1, 0)
 
 if __name__ == '__main__':
     unittest.main()
