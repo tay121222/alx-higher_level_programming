@@ -123,5 +123,10 @@ class TestRectangle(unittest.TestCase):
         correct = {'x': 1, 'y': 9, 'id': 5, 'height': 2, 'width': 10}
         self.assertDictEqual(correct, r.to_dictionary())
 
+    def test_update_args_height_zero(self):
+        r = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            r.update(89, 1, 0)
+
 if __name__ == '__main__':
     unittest.main()
