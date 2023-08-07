@@ -9,6 +9,10 @@ import os
 class TestBase(unittest.TestCase):
     """Test Cases"""
 
+    @classmethod
+    def setUpClass(cls):
+        Square._Square__nb_objects = 0
+
     def test_square_creation(self):
         s1 = Square(1)
         s2 = Square(1, 2)
@@ -73,12 +77,36 @@ class TestBase(unittest.TestCase):
         s1 = Square(1, 2, 3, 4)
         self.assertEqual(s1.to_dictionary(), {'id': 4, 'size': 1, 'x': 2, 'y': 3})
 
-    def test_create_square_with_x_and_y(self):
-        s1 = Square(1, 2, 3, 1)
-        self.assertEqual(s1.size, 1)
-        self.assertEqual(s1.x, 2)
-        self.assertEqual(s1.y, 3)
-        self.assertEqual(s1.id, 1)
+    def test_square_creation_with_string_size(self):
+        with self.assertRaises(TypeError):
+            Square("1")
+
+    def test_square_creation_with_string_x(self):
+        with self.assertRaises(TypeError):
+            Square(1, "2")
+
+    def test_square_creation_with_invalid_values(self):
+        with self.assertRaises(ValueError):
+            Square(-1)
+            Square(1, -2)
+            Square(1, 2, -3)
+
+    def test_square_str(self):
+        s = Square(1, 2, 3, 4)
+        self.assertEqual(str(s), "[Square] (4) 2/3 - 1")
+
+    def test_square_save_to_file_empty_list(self):
+        Square.save_to_file([])
+        self.assertTrue(os.path.exists("Square.json"))
+        with open("Square.json", "r") as file:
+            content = file.read()
+            self.assertEqual(content, "[]")
+        os.remove("Square.json")
+
+    def test_square_save_to_file_single_square(self):
+        s = Square(10, 2, 1, 1)
+        correct_output = {'id': 1, 'x': 2, 'size': 10, 'y': 1}
+        self.assertDictEqual(correct_output, s.to_dictionary())
 
 if __name__ == "__main__":
     unittest.main()
