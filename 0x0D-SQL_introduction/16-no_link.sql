@@ -1,2 +1,2 @@
 -- lists all records of the table second_table
-SELECT score, name from second_table where name <> '' or name <> NULL ORDER BY score DESC;
+SELECT score, name FROM second_table WHERE name <> '' or name <> NULL ORDER BY score DESC;
