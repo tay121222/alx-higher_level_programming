@@ -5,6 +5,9 @@ if (process.argv.length < 4) {
   let temp = parseInt(process.argv[2]);
   let temp2 = parseInt(process.argv[3]);
 
+  if (temp < temp2) {
+    [temp, temp2] = [temp2, temp];
+  }
   for (let i = 4; i < process.argv.length; i++) {
     const current = parseInt(process.argv[i]);
     if (current > temp) {
