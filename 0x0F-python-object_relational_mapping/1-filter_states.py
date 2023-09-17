@@ -10,7 +10,7 @@ if __name__ == "__main__":
     cur = db.cursor()
     cur.execute(
             """SELECT * FROM states WHERE SUBSTRING(name, 1, 1) = 'N'
-            ORDER BY id DESC"""
+            ORDER BY id ASC"""
             )
     states = cur.fetchall()
     for name_N in states:
