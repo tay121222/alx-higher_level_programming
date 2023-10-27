@@ -19,4 +19,3 @@ request(apiUrl, function (error, response, body) {
     console.error(error);
   }
 });
-
