@@ -8,9 +8,10 @@ let count = 0;
 
 request(apiUrl, function (error, response, body) {
   if (!error && response.statusCode === 200) {
-    const data = JSON.parse(body);
-    data.results.forEach((movie) => {
-      if (movie.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)) {
+    const films = JSON.parse(body).results;
+    films.forEach((film) => {
+      const characters = film.characters;
+      if (characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)) {
         count++;
       }
     });
